@@ -1,0 +1,104 @@
+/* Reset default margins/paddings */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Full viewport height root */
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main app layout */
+.dashboard {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.metrics-preview {
+  display: flex;
+  gap: 8px;
+}
+
+.metrics-preview span {
+  padding: 4px 8px;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  min-height: 0;
+}
+
+.video-container {
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-feed {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.charts-container {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.chart-wrapper {
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  min-height: 120px;
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+  }
+
+  .charts-container {
+    grid-template-rows: none;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: auto;
+    height: 140px;
+  }
+
+  .chart-wrapper {
+    min-width: 200px;
+    height: 100%;
+  }
+}

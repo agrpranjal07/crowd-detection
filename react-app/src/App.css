@@ -1,0 +1,132 @@
+/* Ensure full viewport height without scroll */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 8px;
+  gap: 8px;
+}
+
+/* Status bar - fixed height */
+.status-bar {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.metrics-preview {
+  display: flex;
+  gap: 8px;
+}
+
+.metrics-preview span {
+  padding: 4px 8px;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* Main content area - fills remaining space */
+.content-wrapper {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 8px;
+  min-height: 0; /* Crucial for grid child overflow */
+}
+
+/* Video container - aspect ratio constrained */
+.video-container {
+  position: relative;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.video-placeholder{
+  color: #f5f5f5;
+}
+.video-feed {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Charts container - scrollable */
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Individual chart containers */
+.chart-wrapper {
+  flex: 1;
+  min-height: 120px;
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chart-wrapper h3 {
+  margin: 0 0 4px 0;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Chart canvas constraints */
+.chart-container {
+  position: relative;
+  height: calc(100% - 16px);
+  width: 100%;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+  }
+
+  .charts-container {
+    flex-direction: row;
+    overflow-x: auto;
+    height: 140px;
+  }
+
+  .chart-wrapper {
+    min-width: 200px;
+    height: 100%;
+  }
+}
+/* Add to your existing CSS */
+.chart-wrapper .chartjs-scale-x {
+  padding: 8px 0;
+}
+
+.chart-wrapper .chartjs-scale-y {
+  padding: 0 8px;
+}
+
+.chart-wrapper .chartjs-axis-title {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.chart-wrapper .chartjs-tick {
+  font-size: 0.7rem;
+}
