@@ -1,0 +1,2 @@
+websockets
+opencv-python
