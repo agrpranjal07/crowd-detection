@@ -1,6 +1,0 @@
-websockets
-opencv-python
-ultralytics
-pandas
-scipy
-matplotlib
