@@ -1,132 +1,93 @@
-/* Ensure full viewport height without scroll */
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-}
-
-.dashboard {
-  display: flex;
-  flex-direction: column;
+.app-container {
+  padding: 20px;
   height: 100vh;
-  padding: 8px;
-  gap: 8px;
+  background: #f8f9fa;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Status bar - fixed height */
-.status-bar {
-  flex: 0 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px;
-  background: #f5f5f5;
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-
-.metrics-preview {
-  display: flex;
-  gap: 8px;
-}
-
-.metrics-preview span {
-  padding: 4px 8px;
-  background: #fff;
-  border-radius: 4px;
-  font-size: 0.75rem;
-}
-
-/* Main content area - fills remaining space */
 .content-wrapper {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 8px;
-  min-height: 0; /* Crucial for grid child overflow */
+  display: flex;
+  gap: 25px;
+  height: calc(100vh - 40px);
 }
 
-/* Video container - aspect ratio constrained */
 .video-container {
-  position: relative;
-  background: #000;
-  border-radius: 4px;
-  overflow: hidden;
-}
-.video-placeholder{
-  color: #f5f5f5;
-}
-.video-feed {
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* Charts container - scrollable */
+.video-frame {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  object-fit: fill;
+  background: #000;
+}
+
 .charts-container {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  overflow-y: auto;
-  padding-right: 4px;
+  gap: 25px;
 }
 
-/* Individual chart containers */
-.chart-wrapper {
-  flex: 1;
-  min-height: 120px;
-  background: white;
-  padding: 8px;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+/* Extra large version */
+.chart-box {
+  height: calc((100vh - 90px) / 3);  /* Even more height reduction */
+  min-height: 250px;
+}
+.chart-box h3 {
+  margin: 0 0 15px 0;
+  color: #2c3e50;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.chart-wrapper h3 {
-  margin: 0 0 4px 0;
-  font-size: 0.75rem;
-  color: #666;
+.chart-area {
+  height: calc(100% - 30px);
 }
 
-/* Chart canvas constraints */
-.chart-container {
-  position: relative;
-  height: calc(100% - 16px);
-  width: 100%;
-}
-
-/* Mobile layout */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .content-wrapper {
-    grid-template-columns: 1fr;
-    grid-template-rows: 60vh auto;
+    flex-direction: column;
   }
-
+  
+  .video-container,
   .charts-container {
-    flex-direction: row;
-    overflow-x: auto;
-    height: 140px;
-  }
-
-  .chart-wrapper {
-    min-width: 200px;
-    height: 100%;
+    height: 50vh;
   }
 }
-/* Add to your existing CSS */
-.chart-wrapper .chartjs-scale-x {
-  padding: 8px 0;
+.anomaly-flag {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.chart-wrapper .chartjs-scale-y {
-  padding: 0 8px;
+.anomaly-flag::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  display: inline-block;
+}
+.chart-area canvas {
+  transition: opacity 0.3s ease;
 }
 
-.chart-wrapper .chartjs-axis-title {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.chart-wrapper .chartjs-tick {
-  font-size: 0.7rem;
+.chart-area:hover canvas {
+  opacity: 0.9;
 }
