@@ -162,7 +162,7 @@ const App = () => {
           </div>
 
           <div className="chart-box">
-            <h3>Anomaly Detection</h3>
+            <h3>Anomaly Score</h3>
             <div className="chart-area">
               <Line data={anomalyChartData} options={chartOptions} />
             </div>
